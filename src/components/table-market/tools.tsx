@@ -3,18 +3,28 @@ import { Data } from "./services";
 type Order = "asc" | "desc";
 
 export function createData(
+  id: string,
   name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
+  date: string,
+  open: string,
+  high: string,
+  low: string,
+  close: string,
+  volume: string,
+  dividends: string,
+  stock_splits: string
 ): Data {
   return {
+    id,
     name,
-    calories,
-    fat,
-    carbs,
-    protein,
+    date,
+    open,
+    high,
+    low,
+    close,
+    volume,
+    dividends,
+    stock_splits,
   };
 }
 
@@ -28,7 +38,7 @@ export function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   return 0;
 }
 
-export function getComparator<Key extends keyof string>(
+export function getComparator<Key extends keyof Data>(
   order: Order,
   orderBy: Key
 ): (
@@ -40,10 +50,7 @@ export function getComparator<Key extends keyof string>(
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-export function stableSort<T>(
-  array: readonly T[],
-  comparator: (a: T, b: T) => number
-) {
+export function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);

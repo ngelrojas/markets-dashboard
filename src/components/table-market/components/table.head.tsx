@@ -6,34 +6,103 @@ import { EnhancedTableProps, Data, HeadCell } from "../services";
 
 const headCells: readonly HeadCell[] = [
   {
-    id: "name",
-    numeric: false,
-    disablePadding: true,
-    label: "Dessert (100g serving)",
+    name: "name",
+    date: "",
+    open: "",
+    high: "",
+    low: "",
+    close: "",
+    volume: "",
+    dividends: "",
+    stock_splits: "",
   },
   {
-    id: "calories",
-    numeric: true,
-    disablePadding: false,
-    label: "Calories",
+    name: "date",
+    date: "",
+    open: "",
+    high: "",
+    low: "",
+    close: "",
+    volume: "",
+    dividends: "",
+    stock_splits: "",
   },
   {
-    id: "fat",
-    numeric: true,
-    disablePadding: false,
-    label: "Fat (g)",
+    name: "open",
+    date: "",
+    open: "",
+    high: "",
+    low: "",
+    close: "",
+    volume: "",
+    dividends: "",
+    stock_splits: "",
   },
   {
-    id: "carbs",
-    numeric: true,
-    disablePadding: false,
-    label: "Carbs (g)",
+    name: "high",
+    date: "",
+    open: "",
+    high: "",
+    low: "",
+    close: "",
+    volume: "",
+    dividends: "",
+    stock_splits: "",
   },
   {
-    id: "protein",
-    numeric: true,
-    disablePadding: false,
-    label: "Protein (g)",
+    name: "low",
+    date: "",
+    open: "",
+    high: "",
+    low: "",
+    close: "",
+    volume: "",
+    dividends: "",
+    stock_splits: "",
+  },
+  {
+    name: "close",
+    date: "",
+    open: "",
+    high: "",
+    low: "",
+    close: "",
+    volume: "",
+    dividends: "",
+    stock_splits: "",
+  },
+  {
+    name: "volume",
+    date: "",
+    open: "",
+    high: "",
+    low: "",
+    close: "",
+    volume: "",
+    dividends: "",
+    stock_splits: "",
+  },
+  {
+    name: "dividends",
+    date: "",
+    open: "",
+    high: "",
+    low: "",
+    close: "",
+    volume: "",
+    dividends: "",
+    stock_splits: "",
+  },
+  {
+    name: "stock_splits",
+    date: "",
+    open: "",
+    high: "",
+    low: "",
+    close: "",
+    volume: "",
+    dividends: "",
+    stock_splits: "",
   },
 ];
 
@@ -48,6 +117,7 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
   } = props;
   const createSortHandler =
     (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+      console.log(`property: ${property}`);
       onRequestSort(event, property);
     };
 
@@ -68,16 +138,16 @@ export default function EnhancedTableHead(props: EnhancedTableProps) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? "right" : "left"}
-            padding={headCell.disablePadding ? "none" : "normal"}
+            align={headCell.name ? "left" : "right"}
+            padding={headCell.id ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : "asc"}
-              onClick={createSortHandler(headCell.id)}
+              onClick={createSortHandler(headCell.name as keyof Data)}
             >
-              {headCell.label}
+              {headCell.name}
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
                   {order === "desc" ? "sorted descending" : "sorted ascending"}
