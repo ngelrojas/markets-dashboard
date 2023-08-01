@@ -1,18 +1,29 @@
 type Order = "asc" | "desc";
 
 export interface Data {
-  calories: number;
-  carbs: number;
-  fat: number;
+  id?: string;
   name: string;
-  protein: number;
+  date: string;
+  open: string;
+  high: string;
+  low: string;
+  close: string;
+  volume: string;
+  dividends: string;
+  stock_splits: string;
 }
 
 export interface HeadCell {
-  disablePadding: boolean;
-  id: string;
-  label: string;
-  numeric: boolean;
+  id?: string;
+  name: string;
+  date: string;
+  open: string;
+  high: string;
+  low: string;
+  close: string;
+  volume: string;
+  dividends: string;
+  stock_splits: string;
 }
 
 export interface EnhancedTableProps {
